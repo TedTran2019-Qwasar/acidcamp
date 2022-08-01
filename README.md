@@ -1,4 +1,4 @@
-# Basecamp
+# Acidcamp
 
 Looking at the provided gif: 
 1. Users page (user model + user/session controller). 

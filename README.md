@@ -1,5 +1,4 @@
-# my_basecamp
-Creating a simple clone of BaseCamp
+# Basecamp
 
 Looking at the provided gif: 
 1. Users page (user model + user/session controller). 

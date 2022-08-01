@@ -1,4 +1,4 @@
-# my_basecamp_1
+# my_basecamp
 Creating a simple clone of BaseCamp
 
 Since I usually roll my own user authentication, I'll use Devise this time around to learn more.

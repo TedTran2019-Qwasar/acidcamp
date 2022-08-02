@@ -13,12 +13,15 @@
 
   <body>
   <% if notice %>
-    <p class="notice"><%= notice %></p>
+    <div class="notice"><%= notice %></div>
   <% end %>
-
   <% if alert %>
-    <p class="alert"><%= alert %></p>
+    <div class="alert"><%= alert %></div>
   <% end %>
+  <% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+  
     <main>
       <%= yield %>
     </main>

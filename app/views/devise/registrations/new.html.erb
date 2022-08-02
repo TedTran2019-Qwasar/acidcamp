@@ -1,29 +1,40 @@
-<h2>Sign up</h2>
+<div class="w-1/2 h-1/2 mx-auto">
+  <%= image_tag ("cat-logo.png"), class: "img" %>
+</div>
+<h2 class="text-3xl text-center">Sign up Page</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="flex justify-center" >
+  <%= form_with model: resource, url: registration_path(resource_name), data: { turbo:false } do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+      class: "input input-bordered input-primary w-full max-w-xs" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="field input-secondary">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password",
+      class: "input input-bordered input-secondary w-full max-w-xs" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",
+      class: "input input-bordered input-accent w-full max-w-xs" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="actions flex justify-center">
+      <%= f.submit "Sign up", class: "btn btn-outline btn-accent glass" %>
+    </div>
+  <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="text-center p-10">
+<p> Already signed up? Log in here! </p>
+  <%= render "devise/shared/links" %>
+</div>

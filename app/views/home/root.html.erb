@@ -1,0 +1,15 @@
+<div>
+  <div class="w-1/2 h-1/2 mx-auto">
+    <%= image_tag ("cat-logo.png"), class: "img" %>
+  </div>
+  <h1 class="text-9xl text-center">Collaborate</h1>
+  <h3 class="text-center italic">A project management tool for developers</h3>
+  <div class="flex justify-around m-10">
+  <button class="btn btn-outline btn-primary">
+    <%= link_to "Sign Up", new_user_registration_path %>
+  </button>
+  <button class="btn btn-outline btn-primary">
+    <%= link_to "Login", new_user_session_path %>
+  </button>
+  </div>
+</div>

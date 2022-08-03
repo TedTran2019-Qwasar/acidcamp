@@ -15,6 +15,7 @@ class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # Think I'll do :user, :admin, :super_admin
 
   after_create :assign_default_role
 
@@ -28,4 +29,15 @@ class User < ApplicationRecord
   has_many :projects,
   class_name: :Project,
   foreign_key: :creator_id
+
+  has_many :project_shares, 
+  dependent: :destroy
+
+  has_many :projects_shared_with,
+  through: :project_shares,
+  source: :project
+
+  def all_projects
+    projects + projects_shared_with
+  end
 end

@@ -1,4 +1,9 @@
 <div id="<%= dom_id project %>">
+  <ul>
+    <li>Creator: <%= project.creator.email %></li>
+    <li>Title: <%= project.title %></li>
+    <li>Description: <%= project.description %></li>
+  </ul>  
   <% if action_name != "show" %>
     <%= link_to "Show this project", project, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this project', edit_project_path(project), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_02_200158) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_03_065031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "project_shares", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id", "user_id"], name: "index_project_shares_on_project_id_and_user_id", unique: true
+    t.index ["project_id"], name: "index_project_shares_on_project_id"
+    t.index ["user_id"], name: "index_project_shares_on_user_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.integer "creator_id", null: false
@@ -53,4 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_02_200158) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "project_shares", "projects"
+  add_foreign_key "project_shares", "users"
 end

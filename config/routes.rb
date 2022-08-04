@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   root "home#root"
   
   resources :projects
+  resources :project_shares, only: %i[create destroy]
 end

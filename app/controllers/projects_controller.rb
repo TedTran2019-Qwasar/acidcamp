@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
     end
   end
-
+  
   private
     # Hmm, consider scoped roles later. 
     def set_project

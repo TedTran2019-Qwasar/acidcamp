@@ -15,15 +15,21 @@ class Project < ApplicationRecord
   resourcify
 
   belongs_to :creator,
-  class_name: :User,
-  foreign_key: :creator_id
+             class_name: :User
 
   has_many :project_shares,
-  dependent: :destroy
+           dependent: :destroy
 
   has_many :members,
-  through: :project_shares,
-  source: :shared_to
+           through: :project_shares,
+           source: :shared_to
+  
+  has_many :discussions,
+  dependent: :destroy
+
+  has_many :tasks, 
+  dependent: :destroy
+
 
   def all_members
     members + creator_sql
@@ -31,12 +37,12 @@ class Project < ApplicationRecord
 
   def creator_sql
     User
-    .where(id: creator_id)
+      .where(id: creator_id)
   end
 
   def all_members_sql
     User
-    .joins('LEFT JOIN project_shares ON users.id = project_shares.user_id')
-    .where('users.id = ? OR project_shares.project_id = ?', creator_id, id)
+      .joins('LEFT JOIN project_shares ON users.id = project_shares.user_id')
+      .where('users.id = ? OR project_shares.project_id = ?', creator_id, id)
   end
 end

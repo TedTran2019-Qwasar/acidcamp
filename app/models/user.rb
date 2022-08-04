@@ -20,22 +20,26 @@ class User < ApplicationRecord
   after_create :assign_default_role
 
   def assign_default_role
-    self.add_role(:user) if self.roles.blank?
+    add_role(:user) if roles.blank?
   end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :projects,
-  class_name: :Project,
-  foreign_key: :creator_id
+           class_name: :Project,
+           foreign_key: :creator_id
 
-  has_many :project_shares, 
-  dependent: :destroy
+  has_many :project_shares,
+           dependent: :destroy
 
   has_many :projects_shared_with,
-  through: :project_shares,
-  source: :project
+           through: :project_shares,
+           source: :project
+
+  has_many :discussions, foreign_key: :creator_id
+  has_many :tasks, foreign_key: :author_id
+  has_many :messages, foreign_key: :author_id
 
   def all_projects
     projects + projects_shared_with

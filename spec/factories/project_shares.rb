@@ -10,6 +10,5 @@
 #
 FactoryBot.define do
   factory :project_share do
-    
   end
 end

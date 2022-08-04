@@ -1,13 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user! # Direct if not signed in
-  before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :set_project, only: %i[show edit update destroy]
 
   def index
     @projects = current_user.projects
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @project = Project.new
@@ -23,7 +22,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
+        format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -34,7 +33,7 @@ class ProjectsController < ApplicationController
     authorize @project
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
+        format.html { redirect_to project_url(@project), notice: 'Project was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -46,21 +45,22 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
+      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
     end
   end
-  
-  private
-    # Hmm, consider scoped roles later. 
-    def set_project
-      if current_user.has_role? :super_admin
-        @project = Project.find(params[:id])
-      else
-        @project = current_user.projects.find(params[:id])
-      end
-    end
 
-    def project_params
-      params.require(:project).permit(:title, :description)
-    end
+  private
+
+  # Hmm, consider scoped roles later.
+  def set_project
+    @project = if current_user.has_role? :super_admin
+                 Project.find(params[:id])
+               else
+                 current_user.projects.find(params[:id])
+               end
+  end
+
+  def project_params
+    params.require(:project).permit(:title, :description)
+  end
 end

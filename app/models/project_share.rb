@@ -14,8 +14,8 @@ class ProjectShare < ApplicationRecord
   belongs_to :project
 
   belongs_to :shared_to,
-  class_name: :User,
-  foreign_key: :user_id
+             class_name: :User,
+             foreign_key: :user_id
 
   def cannot_be_project_owner
     errors.add(:user_id, "can't be the project owner") if project.creator_id == user_id

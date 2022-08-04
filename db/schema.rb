@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_03_065031) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_04_205105) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "discussions", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "creator_id", null: false
+    t.integer "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_discussions_on_creator_id"
+    t.index ["project_id"], name: "index_discussions_on_project_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "author_id", null: false
+    t.integer "discussion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_messages_on_author_id"
+    t.index ["discussion_id"], name: "index_messages_on_discussion_id"
+  end
 
   create_table "project_shares", force: :cascade do |t|
     t.bigint "project_id"
@@ -41,6 +61,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_03_065031) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.text "description", null: false
+    t.integer "author_id", null: false
+    t.integer "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_tasks_on_author_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "users", force: :cascade do |t|

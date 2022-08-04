@@ -1,5 +1,5 @@
 class ProjectPolicy < ApplicationPolicy
-    # users can see all of their own projects + projects shared with them
+  # users can see all of their own projects + projects shared with them
   def index?
     true
   end

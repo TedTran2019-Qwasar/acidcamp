@@ -47,6 +47,7 @@ gem "bootsnap", require: false
 gem 'devise'
 gem 'pundit'
 gem 'rolify'
+gem 'rubocop-rails', require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 

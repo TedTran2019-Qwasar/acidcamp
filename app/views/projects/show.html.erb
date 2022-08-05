@@ -6,6 +6,11 @@
 
     <%= render @project %>
 
+    <%= form_with url: add_attachment_project_path(@project), method: :post, data: {turbo: false} do |f| %>
+      <%= f.file_field "project[image]" %>
+      <%= f.submit "Add Attachment" %>
+    <% end %>
+
     <%= link_to 'Edit this project', edit_project_path(@project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to 'Destroy this project', project_path(@project), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>

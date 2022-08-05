@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'home#root'
 
   resources :projects do
+    post 'add_attachment', on: :member
     resources :tasks, only: %i[create destroy update index edit]
     resources :messages, only: %i[create destroy update index edit]
     resources :discussions, only: %i[create destroy update index show edit]

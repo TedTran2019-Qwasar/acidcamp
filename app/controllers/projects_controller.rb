@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user! # Direct if not signed in
-  before_action :set_project, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show edit update destroy add_attachment]
 
   def index
     @projects = current_user.projects
@@ -49,6 +49,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def add_attachment
+    authorize @project
+    @project.images.attach(project_params[:image])
+  end
+
   private
 
   # Hmm, consider scoped roles later.
@@ -61,6 +66,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description, :image)
   end
 end

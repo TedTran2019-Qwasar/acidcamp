@@ -14,6 +14,9 @@ class Project < ApplicationRecord
 
   resourcify
 
+  # Hmm. Made it add images one by one, but it can have many images
+  has_many_attached :images 
+
   belongs_to :creator,
              class_name: :User
 

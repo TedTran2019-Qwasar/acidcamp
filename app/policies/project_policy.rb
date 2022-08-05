@@ -30,4 +30,8 @@ class ProjectPolicy < ApplicationPolicy
   def destroy?
     update?
   end
+
+  def add_attachment?
+    update?
+  end
 end

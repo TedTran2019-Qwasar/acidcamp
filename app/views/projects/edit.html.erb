@@ -3,7 +3,7 @@
 
   <%= render "form", project: @project %>
 
-  <%= form_with(url: project_shares_url, method: 'POST', data: {turbo: false}) do |form|  %>
+  <%= form_with(url: project_shares_url, method: 'POST') do |form|  %>
     <%= form.label 'Email' %>
     <%= form.email_field 'project_share[email]' %>
     <%= form.check_box 'project_share[admin]', class: 'toggle-circle' %>

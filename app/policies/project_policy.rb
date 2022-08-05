@@ -20,8 +20,8 @@ class ProjectPolicy < ApplicationPolicy
   # users can update projects shared with them if given admin permissions (resource instance)
   def update?
     @user.has_role?(:super_admin) ||
-      @user.has_role?(:admin, @record) ||
-      @user.id == @record.creator_id
+      @user.has_role?(:admin, @record)
+      # @user.id == @record.creator_id
   end
 
   # super_admins can destroy all projects

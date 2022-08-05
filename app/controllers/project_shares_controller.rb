@@ -15,8 +15,7 @@ class ProjectSharesController < ApplicationController
       @project_share.shared_to.add_role(:admin, @project_share.project) if admin_params[:admin] == '1'
       redirect_to request.referer, notice: 'Project was successfully shared.'
     else
-      render edit_project_url(project_share_params[:project_id]),
-             alert: 'Project was not shared.', status: :unprocessable_entity
+      redirect_to request.referer, alert: 'Project was not shared.', status: :unprocessable_entity
     end
   end
 

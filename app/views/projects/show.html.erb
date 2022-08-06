@@ -12,7 +12,7 @@
     <% end %>
   
     <%= render 'discussions/discussions' %>
-    
+
     <%= form_with url: project_tasks_path(@project), method: :post do |f| %>
       <%= f.text_field "task[description]" %>
       <%= f.submit "Add Task" %>
@@ -23,6 +23,15 @@
     <%= form_with url: add_attachment_project_path(@project), method: :post do |f| %>
       <%= f.file_field "project[image]" %>
       <%= f.submit "Add Attachment" %>
+    <% end %>
+
+    <% @project.images.each do |image| %>
+      <% if image.image? %>
+        <%= image_tag(image) %>
+      <% else %>
+        <%= link_to image.filename, rails_blob_path(image, disposition: 'attachment') %>
+        <%= link_to image.filename, rails_blob_path(image, disposition: 'preview') %>
+      <% end %>
     <% end %>
 
     <%= link_to 'Edit this project', edit_project_path(@project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

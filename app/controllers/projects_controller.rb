@@ -1,9 +1,16 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user! # Direct if not signed in
-  before_action :set_project, only: %i[show edit update destroy add_attachment, remove_attachment]
+  before_action :set_project, only: %i[show edit update destroy add_attachment remove_attachment]
 
   def index
-    @projects = current_user.projects
+    case params[:filter]
+    when 'owned'
+      @projects = current_user.projects
+    when 'shared'
+      @projects = current_user.projects_shared_with
+    else
+      @projects = current_user.all_projects_sql
+    end
   end
 
   def show

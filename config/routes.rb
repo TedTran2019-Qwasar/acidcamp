@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     post 'add_attachment', on: :member
+    delete 'remove_attachment', on: :member
     resources :tasks, only: %i[create destroy update index edit]
     resources :discussions, only: %i[create destroy update index show edit] do 
       resources :messages, only: %i[create destroy update edit]

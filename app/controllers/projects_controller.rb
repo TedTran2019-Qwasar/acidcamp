@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user! # Direct if not signed in
-  before_action :set_project, only: %i[show edit update destroy add_attachment]
+  before_action :set_project, only: %i[show edit update destroy add_attachment, remove_attachment]
 
   def index
     @projects = current_user.projects
@@ -57,6 +57,12 @@ class ProjectsController < ApplicationController
     authorize @project
     @project.images.attach(project_params[:image])
     redirect_to request.referer, notice: 'File was successfully added.'
+  end
+
+  def remove_attachment
+    authorize @project
+    @project.images.find(params[:attachment_id]).purge
+    redirect_to request.referer, notice: 'File was successfully deleted'
   end
 
   private

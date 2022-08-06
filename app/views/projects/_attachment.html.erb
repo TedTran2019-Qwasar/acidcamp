@@ -1,0 +1,7 @@
+<% if image.image? %>
+  <%= image_tag(image) %>
+<% else %>
+  <%= link_to image.filename, rails_blob_path(image, disposition: 'preview') %>
+<% end %>
+<%= link_to image.filename, rails_blob_path(image, disposition: 'attachment') %>
+<%= button_to 'Remove Attachment', remove_attachment_project_path, method: 'delete', params: { attachment_id: image.id } %>

@@ -25,14 +25,7 @@
       <%= f.submit "Add Attachment" %>
     <% end %>
 
-    <% @project.images.each do |image| %>
-      <% if image.image? %>
-        <%= image_tag(image) %>
-      <% else %>
-        <%= link_to image.filename, rails_blob_path(image, disposition: 'attachment') %>
-        <%= link_to image.filename, rails_blob_path(image, disposition: 'preview') %>
-      <% end %>
-    <% end %>
+    <%= render 'projects/attachments', images: @project.images %>
 
     <%= link_to 'Edit this project', edit_project_path(@project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">

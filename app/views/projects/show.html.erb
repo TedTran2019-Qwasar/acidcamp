@@ -6,6 +6,13 @@
 
     <%= render @project %>
 
+    <%= form_with url: project_discussions_path(@project), method: :post do |f| %>
+      <%= f.text_field "discussion[title]" %>
+      <%= f.submit "Add Discussion" %>
+    <% end %>
+  
+    <%= render 'discussions/discussions' %>
+    
     <%= form_with url: project_tasks_path(@project), method: :post do |f| %>
       <%= f.text_field "task[description]" %>
       <%= f.submit "Add Task" %>

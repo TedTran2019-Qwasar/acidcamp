@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    authorize @task
   end
 
   def create
@@ -36,6 +37,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    authorize @task
     @task.destroy
 
     respond_to do |format|
@@ -53,12 +55,10 @@ class TasksController < ApplicationController
       end
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = @project.tasks.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:description)
     end

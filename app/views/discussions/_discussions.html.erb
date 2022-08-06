@@ -1,0 +1,6 @@
+<h2>Discussions</h2>
+<ul>
+  <% @discussions.each do |discussion| %>
+    <li><%= render 'discussions/discussion', discussion: discussion %></li>
+  <% end %>
+</ul>

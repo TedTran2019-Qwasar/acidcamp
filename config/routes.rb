@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :projects do
     post 'add_attachment', on: :member
     resources :tasks, only: %i[create destroy update index edit]
-    resources :messages, only: %i[create destroy update index edit]
-    resources :discussions, only: %i[create destroy update index show edit]
+    resources :discussions, only: %i[create destroy update index show edit] do 
+      resources :messages, only: %i[create destroy update edit]
+    end
   end
   resources :project_shares, only: %i[create destroy]
 end

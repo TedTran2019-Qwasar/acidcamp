@@ -7,7 +7,8 @@
     <%= render 'messages/messages', messages: discussion.messages %>
   </div>
 
-  <%= form_with url: project_discussion_messages_path(@project.id, discussion.id), method: :post do |f| %>
+  <%= form_with url: project_discussion_messages_path(@project.id, discussion.id), method: :post,
+  data: { controller: "reset", action: "turbo:submit-end->reset#reset" } do |f| %>
     <%= f.text_field "message[body]" %>
     <%= f.submit "Add Message" %>
   <% end %>

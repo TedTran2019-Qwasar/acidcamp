@@ -14,6 +14,6 @@ bin/rails tailwindcss:watch
 - Pundit and Rolify for authorization
 - ActiveStorage to upload, preview, display, and download images
 - ActionCable + Turbo Streams to utilize websockets for real-time discussion rooms
-- Hotwire (Turbo Frames and Turbo Streams) to increase responsiveness
+- Hotwire (Turbo and Stimulus) to increase responsiveness
 - TailwindCSS and DaisyUI for styling
 - PostgreSQL - Database

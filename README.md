@@ -17,3 +17,4 @@ bin/rails tailwindcss:watch
 - Hotwire (Turbo and Stimulus) to increase responsiveness
 - TailwindCSS and DaisyUI for styling
 - PostgreSQL - Database
+- RSpec w/ Shoulda-matchers - Testing

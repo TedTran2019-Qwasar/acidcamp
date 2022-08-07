@@ -1,7 +1,9 @@
 <div id="<%= dom_id discussion %>">
   <%= discussion.title %>
 
-  <div id="messages">
+  <%= turbo_stream_from discussion %>
+
+  <div id=<%= "messages-#{discussion.id}" %>>
     <%= render 'messages/messages', messages: discussion.messages %>
   </div>
 

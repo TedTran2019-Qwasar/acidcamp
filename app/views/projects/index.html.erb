@@ -9,9 +9,11 @@
     <%= link_to 'New project', new_project_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="projects" class="min-w-full">
-    <%= render @projects %>
-  </div>
+  <%= turbo_frame_tag 'projects' do %>
+    <div id="projects" class="min-w-full">
+      <%= render @projects %>
+    </div>
+  <% end %>
 
   <%= link_to 'All projects!', projects_path %>
   <%= link_to 'Only projects created by me!', projects_path(filter: 'owned') %>

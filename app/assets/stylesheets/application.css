@@ -18,3 +18,9 @@
     width: 100%;
     height: 100%;
  }
+
+ turbo-frame {
+  border: 1px solid red;
+  display: block;
+ }
+ 

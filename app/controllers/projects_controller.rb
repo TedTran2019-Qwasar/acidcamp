@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
     @project = if current_user.has_role? :super_admin
                  Project.find(params[:id])
                else
-                 current_user.projects.find(params[:id])
+                 current_user.all_projects_sql.find(params[:id])
                end
   end
 

@@ -1,10 +1,15 @@
 <div id="<%= dom_id discussion %>">
   <%= discussion.title %>
-  <%= render 'messages/messages', messages: discussion.messages %>
+
+  <div id="messages">
+    <%= render 'messages/messages', messages: discussion.messages %>
+  </div>
+
   <%= form_with url: project_discussion_messages_path(@project.id, discussion.id), method: :post do |f| %>
     <%= f.text_field "message[body]" %>
     <%= f.submit "Add Message" %>
   <% end %>
+
   <%= link_to "Edit", edit_project_discussion_path(discussion.project_id, discussion.id) %>
   <%= button_to 'Destroy', project_discussion_path(discussion.project_id, discussion.id), method: :delete %>
 </div>

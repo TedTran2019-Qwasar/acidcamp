@@ -1,6 +1,6 @@
 <div id="<%= dom_id message %>">
   <%= message.author.email %>
   <%= message.body %>
-  <%= link_to "Edit", edit_project_discussion_message_path(@project.id, message.discussion_id, message.id) %>
-  <%= button_to 'Destroy', project_discussion_message_path(@project.id, message.discussion_id, message.id), method: :delete %>
+  <%= link_to "Edit", edit_project_discussion_message_path(message.project.id, message.discussion_id, message.id) %>
+  <%= button_to 'Destroy', project_discussion_message_path(message.project.id, message.discussion_id, message.id), method: :delete %>
 </div>

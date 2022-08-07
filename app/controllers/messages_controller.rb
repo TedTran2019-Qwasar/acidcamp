@@ -12,10 +12,11 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.discussion_id = @discussion.id
     @message.author_id = current_user.id
-
+    
     respond_to do |format|
       if @message.save
         format.html { redirect_to request.referer, notice: "Message was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Message was successfully created." }
       else
         format.html { redirect_to request.referer, status: :unprocessable_entity }
       end

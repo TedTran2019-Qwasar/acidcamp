@@ -15,7 +15,9 @@
     </div>
   <% end %>
 
-  <%= link_to 'All projects!', projects_path %>
-  <%= link_to 'Only projects created by me!', projects_path(filter: 'owned') %>
-  <%= link_to 'Only projects shared with me!', projects_path(filter: 'shared') %>
+  <div class="flex justify-between">
+    <%= link_to 'All projects!', projects_path, class: "btn btn-outline btn-accent glass" %>
+    <%= link_to 'Created by me!', projects_path(filter: 'owned'), class: "btn btn-outline btn-primary glass" %>
+    <%= link_to 'Shared with me!', projects_path(filter: 'shared'), class: "btn btn-outline btn-secondary glass" %>
+  </div>
 </div>

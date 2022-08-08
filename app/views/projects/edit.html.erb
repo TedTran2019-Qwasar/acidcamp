@@ -1,18 +1,21 @@
 <div class="mx-auto md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">Editing project</h1>
 
-  <%= turbo_frame_tag 'projects' do %>
-    <%= render "form", project: @project %>
-
-    <%= form_with(url: project_shares_url, method: 'POST') do |form|  %>
-      <%= form.label 'Email' %>
-      <%= form.email_field 'project_share[email]' %>
-      <%= form.check_box 'project_share[admin]', class: 'toggle-circle' %>
-      <%= form.label 'admin' %>
-      <%= form.hidden_field 'project_share[project_id]', value: @project.id %>
-      <%= form.submit 'Add member', class: 'btn btn-outline btn-primary' %>
-    <% end %>
+  <%# turbo_frame_tag 'projects' do %>
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
+  <%= render "form", project: @project %>
+
+  <%= form_with(url: project_shares_url, method: 'POST') do |form|  %>
+    <%= form.label 'Email' %>
+    <%= form.email_field 'project_share[email]' %>
+    <%= form.check_box 'project_share[admin]', class: 'toggle-circle' %>
+    <%= form.label 'admin' %>
+    <%= form.hidden_field 'project_share[project_id]', value: @project.id %>
+    <%= form.submit 'Add member', class: 'btn btn-outline btn-primary' %>
+    <% end %>
+  <%# end %>
 
   <%= link_to "Show this project", @project, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <%= link_to "Back to projects", projects_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

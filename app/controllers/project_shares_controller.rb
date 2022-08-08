@@ -4,7 +4,10 @@ class ProjectSharesController < ApplicationController
   def create
     user = User.find_by(email: project_share_params[:email])
     unless user
-      redirect_to request.referer, notice: 'Project was not shared'
+      respond_to do |format|
+        format.html { redirect_to request.referer, notice: 'Project was not shared' }
+        # format.turbo_stream { flash.now[:notice] = 'Project was not shared' }
+      end
       return
     end
     @project_share = ProjectShare.new

@@ -4,6 +4,7 @@ Acidcamp is a Basecamp clone; a project management and team communication applic
 
 ## Setup
 ```bash
+bundle install
 rails server
 bin/rails tailwindcss:watch
 # OR # bin/dev

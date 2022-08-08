@@ -1,5 +1,5 @@
-<div id="<%= dom_id task %>">
-  <%= task.description %>
-  <%= link_to "Edit", edit_project_task_path(task.project_id, task.id) %>
-  <%= button_to 'Destroy', project_task_path(task.project_id, task.id), method: :delete %>
+<div id="<%= dom_id task %>", class="flex">
+  <p class="p-5"> <%= task.description %></p>
+  <%= link_to "Edit", edit_project_task_path(task.project_id, task.id), class: "btn btn-outline" %>
+  <%= button_to 'Destroy', project_task_path(task.project_id, task.id), method: :delete, class: "btn btn-outline" %>
 </div>

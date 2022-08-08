@@ -1,7 +1,11 @@
-<% if image.image? %>
-  <%= image_tag(image) %>
-<% else %>
-  <%= link_to image.filename, rails_blob_path(image, disposition: 'preview') %>
-<% end %>
-<%= link_to image.filename, rails_blob_path(image, disposition: 'attachment') %>
-<%= button_to 'Remove Attachment', remove_attachment_project_path, method: 'delete', params: { attachment_id: image.id } %>
+<h2 class="text-xl"><%= image.filename %></h2>
+<div class="flex space-x-5">
+  <% if image.image? %>
+    <%= image_tag image, class: "h-24 w-24" %>
+  <% else %>
+    <%= link_to 'Preview', rails_blob_path(image, disposition: 'preview'), class: "link link-primary" %>
+  <% end %>
+  <%= link_to 'Download', rails_blob_path(image, disposition: 'attachment'), class: "link link-primary" %>
+  <%= button_to 'Remove Attachment', remove_attachment_project_path, method: 'delete', params: { attachment_id: image.id },
+  class: "btn btn-outline" %>
+</div>

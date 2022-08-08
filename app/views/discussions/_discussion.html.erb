@@ -1,5 +1,9 @@
-<div id="<%= dom_id discussion %>">
-  <%= discussion.title %>
+<div id="<%= dom_id discussion %>", class="m-5 p-5 border-solid border-2 border-sky-500">
+  <div class="flex justify-between">
+    <h2 class="text-xl"><%= discussion.title %></h2>
+    <%= link_to "Edit", edit_project_discussion_path(discussion.project_id, discussion.id), class: "link link-primary" %>
+    <%= button_to 'Destroy', project_discussion_path(discussion.project_id, discussion.id), method: :delete, class: "btn btn-outline" %>
+  </div>
 
   <%= turbo_stream_from discussion %>
 
@@ -12,7 +16,4 @@
     <%= f.text_field "message[body]" %>
     <%= f.submit "Add Message" %>
   <% end %>
-
-  <%= link_to "Edit", edit_project_discussion_path(discussion.project_id, discussion.id) %>
-  <%= button_to 'Destroy', project_discussion_path(discussion.project_id, discussion.id), method: :delete %>
 </div>

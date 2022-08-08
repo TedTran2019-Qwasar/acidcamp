@@ -1,36 +1,44 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+<div class="mx-auto md:w-2/3 w-full">
+  <div class="text-center p-10">
     <%= render @project %>
-
-    <%= form_with url: project_discussions_path(@project), method: :post do |f| %>
-      <%= f.text_field "discussion[title]" %>
-      <%= f.submit "Add Discussion" %>
-    <% end %>
-  
-    <%= render 'discussions/discussions' %>
-
-    <%= form_with url: project_tasks_path(@project), method: :post do |f| %>
-      <%= f.text_field "task[description]" %>
-      <%= f.submit "Add Task" %>
-    <% end %>
-
-    <%= render 'tasks/tasks', tasks: @tasks %>
-
-    <%= form_with url: add_attachment_project_path(@project), method: :post do |f| %>
-      <%= f.file_field "project[image]" %>
-      <%= f.submit "Add Attachment" %>
-    <% end %>
-
-    <%= render 'projects/attachments', images: @project.images %>
-
-    <%= link_to 'Edit this project', edit_project_path(@project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this project', project_path(@project), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+  </div>
+  <div class="mx-auto h-screen flex flex-col justify-between">
+    <div>
+      <%= form_with url: project_discussions_path(@project), method: :post do |f| %>
+        <%= f.text_field "discussion[title]" %>
+        <%= f.submit "Add Discussion", class: "btn btn-outline btn-primary" %>
+      <% end %>
+    
+      <%= render 'discussions/discussions' %>
     </div>
-    <%= link_to 'Back to projects', projects_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+    <div>
+      <%= form_with url: project_tasks_path(@project), method: :post do |f| %>
+        <%= f.text_field "task[description]" %>
+        <%= f.submit "Add Task", class: "btn btn-outline btn-secondary" %>
+      <% end %>
+
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+
+    <div>
+      <%= form_with url: add_attachment_project_path(@project), method: :post do |f| %>
+        <%= f.file_field "project[image]" %>
+        <%= f.submit "Add Attachment", class: "btn btn-outline btn-accent" %>
+      <% end %>
+
+      <%= render 'projects/attachments', images: @project.images %>
+    </div>
+
+    <div>
+      <%= link_to 'Edit this project', edit_project_path(@project), class: "btn btn-outline" %>
+      <div class="inline-block ml-2">
+        <%= button_to 'Destroy this project', project_path(@project), method: :delete, class: "btn btn-outline" %>
+      </div>
+      <%= link_to 'Back to projects', projects_path, class: "btn btn-outline" %>
+    </div>
   </div>
 </div>

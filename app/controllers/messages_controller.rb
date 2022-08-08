@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
         format.turbo_stream { flash.now[:notice] = "Message was successfully created." }
       else
         format.html { redirect_to request.referer, status: :unprocessable_entity }
+        format.turbo_stream { flash.now[:notice] = "Message was not created" }
       end
     end
   end
@@ -28,8 +29,10 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.update(message_params)
         format.html { redirect_to request.referer, notice: "Message was successfully updated." }
+        # format.turbo_stream { flash.now[:notice] = "Message was successfully updated." }
       else
         format.html { redirect_to request.referer, status: :unprocessable_entity }
+        # format.turbo_stream { flash.now[:notice] = "Message was not updated." }
       end
     end
   end
@@ -40,6 +43,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to request.referer, notice: "Message was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Message was successfully destroyed." }
     end
   end
 

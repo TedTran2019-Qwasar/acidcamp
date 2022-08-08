@@ -1,8 +1,11 @@
 <div id="<%= dom_id project %>">
   <ul>
     <li>Creator: <%= project.creator.email %></li>
-    <li>Title: <%= project.title %></li>
+    <li>Project Title: <%= project.title %></li>
     <li>Description: <%= project.description %></li>
+    <li>
+      All members: <%= project.all_members.map { |member| member.email }.join(', ') %>
+    </li>
   </ul>  
   <% if action_name != "show" %>
     <%= link_to "Show this project", project, 'data-turbo-frame': '_top',

@@ -13,8 +13,8 @@ class Message < ApplicationRecord
   validates :body, presence: true
   # broadcasts_to :discussion
   after_create_commit -> { broadcast_append_to discussion, target: "messages-#{discussion_id}" }
-  after_destroy_commit -> { broadcast_remove_to discussion, target: "messages-#{discussion_id}" }
-  after_update_commit -> { broadcast_replace_to discussion, target: "messages-#{discussion_id}" }
+  after_destroy_commit -> { broadcast_remove_to discussion, target: "message-#{id}" }
+  after_update_commit -> { broadcast_replace_to discussion, target: "message-#{id}" }
 
   belongs_to :author, class_name: 'User'
   belongs_to :discussion

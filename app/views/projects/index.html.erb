@@ -11,6 +11,9 @@
 
   <%= turbo_frame_tag 'projects' do %>
     <div id="projects" class="min-w-full">
+    <div class="text-center text-blue-400">
+      <%= paginate @projects %>
+    </div>
       <%= render @projects %>
     </div>
   <% end %>

@@ -48,6 +48,7 @@ gem 'devise'
 gem 'pundit'
 gem 'rolify'
 gem 'rubocop-rails', require: false
+gem 'kaminari'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

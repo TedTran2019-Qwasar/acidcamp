@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     else
       @projects = current_user.all_projects_sql
     end
+    @projects = @projects.page(params[:page])
   end
 
   def show

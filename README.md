@@ -18,3 +18,6 @@ bin/rails tailwindcss:watch
 - TailwindCSS and DaisyUI for styling
 - PostgreSQL - Database
 - RSpec w/ Shoulda-matchers - Testing
+
+## Conclusions
+I'd rather use React + Redux for my frontend instead of Hotwire. This was fun, but I wouldn't do it again. I'll be probably using this repository to test new Rails 7 features as they're released or to test out gems. Since this won't be deployed, I won't style the application beyond playing around with TailwindCSS + DaisyUI. 

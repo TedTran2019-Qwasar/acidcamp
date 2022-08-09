@@ -16,6 +16,7 @@ bin/rails tailwindcss:watch
 - ActiveStorage to upload, preview, display, and download images
 - ActionCable + Turbo Streams to utilize websockets for real-time discussion rooms
 - Hotwire (Turbo and Stimulus) to increase responsiveness
+- Kaminari for pagination
 - TailwindCSS and DaisyUI for styling
 - PostgreSQL - Database
 - RSpec w/ Shoulda-matchers - Testing

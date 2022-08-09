@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     authorize @task
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to request.referer, notice: "Task was successfully updated." }
+        format.html { redirect_to project_url(@project), notice: "Task was successfully updated." }
       else
         format.html { redirect_to request.referer, status: :unprocessable_entity }
       end

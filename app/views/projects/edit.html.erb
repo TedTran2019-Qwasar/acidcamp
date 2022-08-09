@@ -1,10 +1,11 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing project</h1>
+  <h1 class="font-bold text-4xl text-center">Editing project</h1>
 
   <%# turbo_frame_tag 'projects' do %>
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
+
   <%= render "form", project: @project %>
 
   <%= form_with(url: project_shares_url, method: 'POST') do |form|  %>

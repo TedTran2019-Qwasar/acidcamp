@@ -1,23 +1,25 @@
-<%= form_with(model: project, class: "contents") do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+<div class="flex flex-col m-5">
+  <%= form_with(model: project, class: "contents") do |form| %>
+    <% if project.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-      <ul>
-        <% project.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% project.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.label :title, "Title" %>
+    <%= form.text_field :title %>
+
+    <%= form.label :description, "Description" %>
+    <%= form.text_area :description %>
+
+    <div class="inline">
+      <%= form.submit class: "btn btn-outline cursor-pointer" %>
     </div>
   <% end %>
-
-  <%= form.label :title, "Title" %>
-  <%= form.text_field :title %>
-
-  <%= form.label :description, "Description" %>
-  <%= form.text_area :description %>
-
-  <div class="inline">
-    <%= form.submit class: "btn btn-outline cursor-pointer" %>
-  </div>
-<% end %>
+</div>

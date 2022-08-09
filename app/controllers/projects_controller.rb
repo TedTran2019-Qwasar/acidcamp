@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user! # Direct if not signed in
-  before_action :set_project, only: %i[show edit update destroy add_attachment remove_attachment]
+  before_action :set_project, only: %i[show edit update destroy add_attachment 
+    remove_attachment add_admin remove_admin]
 
   def index
     case params[:filter]
@@ -36,7 +37,7 @@ class ProjectsController < ApplicationController
         current_user.add_role(:admin, @project)
         format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, notice: @project.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -71,6 +72,20 @@ class ProjectsController < ApplicationController
     authorize @project
     @project.images.find(params[:attachment_id]).purge
     redirect_to request.referer, notice: 'File was successfully deleted'
+  end
+
+  def add_admin
+    authorize @project
+    User.find(params[:member_id]).add_role(:admin, @project)
+    redirect_to request.referer, notice: 'Admin permissions added'
+  end
+
+  # Kinda dumb to allow admins to add/remove admin permissions
+  # But it's just a demonstration, otherwise I'd make it a super_admin exclusive permission
+  def remove_admin
+    authorize @project
+    User.find(params[:member_id]).remove_role(:admin, @project)
+    redirect_to request.referer, notice: 'Admin permissions removed'
   end
 
   private

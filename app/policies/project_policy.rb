@@ -38,4 +38,12 @@ class ProjectPolicy < ApplicationPolicy
   def remove_attachment?
     update?
   end
+
+  def add_admin?
+    update?
+  end
+ 
+  def remove_admin?
+    update?
+  end
 end

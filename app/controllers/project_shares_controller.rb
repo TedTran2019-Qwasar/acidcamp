@@ -22,7 +22,7 @@ class ProjectSharesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @project_share = ProjectShare.find(params[:id])
     authorize @project_share
     @project_share.shared_to.remove_role(:user, @project_share.project)

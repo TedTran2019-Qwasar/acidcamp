@@ -20,7 +20,7 @@ class TasksController < ApplicationController
       if @task.save
         format.html { redirect_to request.referer, notice: "Task was successfully created." }
       else
-        redirect_to request.referer
+        format.html { redirect_to request.referer, notice: @task.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html { redirect_to project_url(@project), notice: "Task was successfully updated." }
       else
-        format.html { redirect_to request.referer, status: :unprocessable_entity }
+        format.html { redirect_to request.referer, notice: @task.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

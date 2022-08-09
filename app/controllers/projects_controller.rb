@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: 'Project was successfully updated.' }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, notice: @project.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

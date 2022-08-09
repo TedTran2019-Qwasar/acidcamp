@@ -21,7 +21,7 @@ class DiscussionsController < ApplicationController
       if @discussion.save
         format.html { redirect_to request.referer, notice: "Discussion was successfully created." }
       else
-        format.html { redirect_to request.referer, status: :unprocessable_entity }
+        format.html { redirect_to request.referer, notice: @discussion.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -32,7 +32,7 @@ class DiscussionsController < ApplicationController
       if @discussion.update(discussion_params)
         format.html { redirect_to request.referer, notice: "Discussion was successfully updated." }
       else
-        format.html { redirect_to request.referer, status: :unprocessable_entity }
+        format.html { redirect_to request.referer, notice: @discussion.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

@@ -48,4 +48,8 @@ class Project < ApplicationRecord
       .joins('LEFT JOIN project_shares ON users.id = project_shares.user_id')
       .where('users.id = ? OR project_shares.project_id = ?', creator_id, id)
   end
+
+  def shared_with?(user_id)
+    !!members.find_by(id: user_id)
+  end
 end

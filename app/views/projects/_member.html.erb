@@ -1,0 +1,11 @@
+<div class="flex space-x-8">
+  <i><%= member.email %></i>
+  <% if current_user.has_role?(:super_admin) || current_user.has_role?(:admin, project) %>
+    <%= link_to 'Unshare', class: "btn btn-outline" unless member == project.creator %>
+    <% if member.has_role?(:admin, project) %>
+      <%= link_to 'Remove admin', class: "btn btn-outline" %>
+    <% else %>
+      <%= link_to 'Add admin', class: 'btn btn-outline' %>
+    <% end %>
+  <% end %>
+</div> 

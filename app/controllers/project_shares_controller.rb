@@ -5,7 +5,7 @@ class ProjectSharesController < ApplicationController
     user = User.find_by(email: project_share_params[:email])
     unless user
       respond_to do |format|
-        format.html { redirect_to request.referer, notice: 'Project was not shared' }
+        format.html { redirect_to request.referer, notice: 'User not found.' }
         # format.turbo_stream { flash.now[:notice] = 'Project was not shared' }
       end
       return
@@ -18,7 +18,7 @@ class ProjectSharesController < ApplicationController
       @project_share.shared_to.add_role(:admin, @project_share.project) if admin_params[:admin] == '1'
       redirect_to request.referer, notice: 'Project was successfully shared.'
     else
-      redirect_to request.referer, alert: 'Project was not shared.', status: :unprocessable_entity
+      redirect_to request.referer, notice: @project_share.errors.full_messages, status: :unprocessable_entity
     end
   end
 

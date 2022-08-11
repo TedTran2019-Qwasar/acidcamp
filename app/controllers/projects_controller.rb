@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
                 when 'owned'
                   current_user.my_projects
                 when 'shared'
-                  current_user.projects_shared_with
+                  current_user.projects_shared_with_me_by_others
                 else
                   current_user.projects_shared_with
                 end

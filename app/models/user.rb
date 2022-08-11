@@ -58,4 +58,8 @@ class User < ApplicationRecord
   def my_projects
     projects_shared_with.where(creator_id: id)
   end
+
+  def projects_shared_with_me_by_others
+    projects_shared_with.where.not(creator_id: id)
+  end
 end

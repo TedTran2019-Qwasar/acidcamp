@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 class ProjectShare < ApplicationRecord
-  validate :cannot_be_project_owner, :already_shared
+  validate :already_shared
 
   belongs_to :project
 

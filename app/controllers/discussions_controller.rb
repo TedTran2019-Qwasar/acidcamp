@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
   before_action :set_discussion, only: %i[edit update destroy]
 
   def index
-    @discussions = @project.tasks
+    @discussions = @project.discussions
   end
 
   def edit
@@ -31,7 +31,7 @@ class DiscussionsController < ApplicationController
     authorize @discussion
     respond_to do |format|
       if @discussion.update(discussion_params)
-        format.html { redirect_to request.referer, notice: 'Discussion was successfully updated.' }
+        format.html { redirect_to project_path(@project), notice: 'Discussion was successfully updated.' }
       else
         format.html { render :edit, notice: @discussion.errors.full_messages, status: :unprocessable_entity }
       end

@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
     authorize @message
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to request.referer, notice: 'Message was successfully updated.' }
+        format.html { redirect_to project_path(@project), notice: 'Message was successfully updated.' }
         # format.turbo_stream { flash.now[:notice] = "Message was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }

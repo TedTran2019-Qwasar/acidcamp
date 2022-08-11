@@ -1,13 +1,19 @@
 # Acidcamp
 
-Acidcamp is a Basecamp clone; a project management and team communication application. I built this project using Rails 7 + TailwindCSS. 
+Acidcamp is a Basecamp clone; a project management and team communication application. My partner designed this project in FIgma and I built it using Rails 7 + TailwindCSS.
 
+Live: 
+
+## High Fidelity Wireframe made in Figma
+![acid-camp-design-documents](./assets/acidcamp-figma.png)
+---
 ## Setup
 ```bash
 bundle install
 rails server
 bin/rails tailwindcss:watch
 ```
+---
 
 ## Gems/Tools used
 - Devise for authentication
@@ -19,6 +25,14 @@ bin/rails tailwindcss:watch
 - TailwindCSS and DaisyUI for styling
 - PostgreSQL - Database
 - RSpec w/ Shoulda-matchers - Testing
+- Hosted on Heroku
+---
 
+## Made By
+- UX Design by [Helen Yu](https://www.linkedin.com/in/helenyustudio/)
+- Coded by [Ted Tran](https://www.linkedin.com/in/tedtran2019/)
+---
 ## Conclusions
-I'd rather use React + Redux for my frontend instead of Hotwire. This was fun, but I wouldn't do it again. I'll be probably using this repository to test new Rails 7 features as they're released or to test out gems. Since this won't be deployed, I won't style the application beyond playing around with TailwindCSS + DaisyUI. 
+Hotwire is rather interesting, but I think I'd rather use React + Redux for my frontend. I'll be using this repository to test new Rails 7 features as they're released or to test out gems. It was a blast styling this application with TailwindCSS + DaisyUI.
+
+---

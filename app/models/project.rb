@@ -15,7 +15,7 @@ class Project < ApplicationRecord
   resourcify
 
   # Hmm. Made it add images one by one, but it can have many images
-  has_many_attached :images 
+  has_many_attached :images
 
   belongs_to :creator,
              class_name: :User
@@ -26,13 +26,12 @@ class Project < ApplicationRecord
   has_many :members,
            through: :project_shares,
            source: :shared_to
-  
+
   has_many :discussions,
-  dependent: :destroy
+           dependent: :destroy
 
-  has_many :tasks, 
-  dependent: :destroy
-
+  has_many :tasks,
+           dependent: :destroy
 
   def all_members
     members + creator_sql

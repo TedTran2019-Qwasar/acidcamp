@@ -11,8 +11,8 @@ class MessagePolicy < ApplicationPolicy
   # Only super_admins, admins, and creator
   def update?
     @user.has_role?(:super_admin) ||
-    @user.has_role?(:admin, @record.project) ||
-    @record.author == @user
+      @user.has_role?(:admin, @record.project) ||
+      @record.author == @user
   end
 
   def destroy?

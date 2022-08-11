@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Resource simply refers to the User model
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     # if resource.has_role? :super_admin -> admin dashboard
     # Page they were previously looking at -> projects page -> root
     if session[:return_to]

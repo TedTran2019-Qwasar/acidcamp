@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   def all_projects_sql
     Project
-    .where('creator_id = ? OR id IN (?)', id, projects_shared_with.ids)
+      .where('creator_id = ? OR id IN (?)', id, projects_shared_with.ids)
   end
 
   def project_share_id(project)

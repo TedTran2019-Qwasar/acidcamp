@@ -18,8 +18,8 @@ class Message < ApplicationRecord
 
   belongs_to :author, class_name: 'User'
   belongs_to :discussion
-  
-  has_one :project, 
-  through: :discussion,
-  source: :project
+
+  has_one :project,
+          through: :discussion,
+          source: :project
 end

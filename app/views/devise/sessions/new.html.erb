@@ -3,9 +3,10 @@
 </div>
 <h2 class="text-3xl text-center">Log In Page</h2>
 
+
 <div class="flex justify-center" >
   <%= form_with model: resource, url: session_path(resource_name), data: { turbo:false } do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="text-center text-fuchsia-800"><%= alert %></div>
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

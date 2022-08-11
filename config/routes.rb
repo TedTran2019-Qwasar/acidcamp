@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post 'add_admin', on: :member
     delete 'remove_admin', on: :member
     resources :tasks, only: %i[create destroy update index edit]
-    resources :discussions, only: %i[create destroy update index show edit] do 
+    resources :discussions, only: %i[create destroy update index show edit] do
       resources :messages, only: %i[create destroy update edit]
     end
   end

@@ -1,6 +1,6 @@
 # Acidcamp
 
-Acidcamp is a Basecamp clone; a project management and team communication application. My partner designed this project in FIgma and I built it using Rails 7 + TailwindCSS.
+Acidcamp is a Basecamp clone; a project management and team communication application. My partner designed this project in Figma and I built it using Rails 7 + TailwindCSS.
 
 Live: 
 

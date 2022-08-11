@@ -21,7 +21,7 @@ class ProjectPolicy < ApplicationPolicy
   def update?
     @user.has_role?(:super_admin) ||
       @user.has_role?(:admin, @record)
-      # @user.id == @record.creator_id
+    # @user.id == @record.creator_id
   end
 
   # super_admins can destroy all projects
@@ -42,7 +42,7 @@ class ProjectPolicy < ApplicationPolicy
   def add_admin?
     update?
   end
- 
+
   def remove_admin?
     update?
   end

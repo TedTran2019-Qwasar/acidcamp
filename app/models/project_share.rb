@@ -22,6 +22,6 @@ class ProjectShare < ApplicationRecord
   end
 
   def already_shared
-    errors.add(:user_id, "is already shared with this project") if project.shared_with?(user_id)
+    errors.add(:user_id, 'is already shared with this project') if project.shared_with?(user_id)
   end
 end

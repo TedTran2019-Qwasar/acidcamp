@@ -19,9 +19,10 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.save
-        format.html { redirect_to request.referer, notice: "Discussion was successfully created." }
+        format.html { redirect_to request.referer, notice: 'Discussion was successfully created.' }
       else
-        format.html { redirect_to request.referer, notice: @discussion.errors.full_messages, status: :unprocessable_entity }
+        format.html do
+ redirect_to request.referer, notice: @discussion.errors.full_messages, status: :unprocessable_entity end
       end
     end
   end
@@ -30,9 +31,9 @@ class DiscussionsController < ApplicationController
     authorize @discussion
     respond_to do |format|
       if @discussion.update(discussion_params)
-        format.html { redirect_to request.referer, notice: "Discussion was successfully updated." }
+        format.html { redirect_to request.referer, notice: 'Discussion was successfully updated.' }
       else
-        format.html { redirect_to request.referer, notice: @discussion.errors.full_messages, status: :unprocessable_entity }
+        format.html { render :edit, notice: @discussion.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -42,26 +43,26 @@ class DiscussionsController < ApplicationController
     @discussion.destroy
 
     respond_to do |format|
-      format.html { redirect_to request.referer, notice: "Discussion was successfully destroyed." }
+      format.html { redirect_to request.referer, notice: 'Discussion was successfully destroyed.' }
     end
   end
 
   private
 
-    def set_project
-      if current_user.has_role? :super_admin
-        @project = Project.find(params[:project_id])
-      else
-        @project = current_user.all_projects_sql.find(params[:project_id])
-      end
-    end
+  def set_project
+    @project = if current_user.has_role? :super_admin
+                 Project.find(params[:project_id])
+               else
+                 current_user.all_projects_sql.find(params[:project_id])
+               end
+  end
 
-    def set_discussion
-      @discussion = @project.discussions.find(params[:id])
-    end
+  def set_discussion
+    @discussion = @project.discussions.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def discussion_params
-      params.require(:discussion).permit(:title)
-    end
+  # Only allow a list of trusted parameters through.
+  def discussion_params
+    params.require(:discussion).permit(:title)
+  end
 end

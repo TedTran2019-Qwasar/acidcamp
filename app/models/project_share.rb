@@ -17,9 +17,11 @@ class ProjectShare < ApplicationRecord
              class_name: :User,
              foreign_key: :user_id
 
-  def cannot_be_project_owner
-    errors.add(:user_id, "can't be the project owner") if project.creator_id == user_id
-  end
+  # Changing logic. Project owner will have project shared to them, so the owner
+  # can be removed from their own project.
+  # def cannot_be_project_owner
+  #   errors.add(:user_id, "can't be the project owner") if project.creator_id == user_id
+  # end
 
   def already_shared
     errors.add(:user_id, 'is already shared with this project') if project.shared_with?(user_id)

@@ -18,7 +18,7 @@
     <% end %>
   <%# end %>
 
-  <% if @project.all_members.any? %>
+  <% if @project.members.any? %>
     <%= render "members", project: @project %>
   <% end %>
 

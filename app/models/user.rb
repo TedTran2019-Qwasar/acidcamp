@@ -41,16 +41,21 @@ class User < ApplicationRecord
   has_many :tasks, foreign_key: :author_id
   has_many :messages, foreign_key: :author_id
 
-  def all_projects
-    projects + projects_shared_with
-  end
+  # def all_projects
+  #   projects + projects_shared_with
+  # end
 
-  def all_projects_sql
-    Project
-      .where('creator_id = ? OR id IN (?)', id, projects_shared_with.ids)
-  end
+  # def all_projects_sql
+  #   Project
+  #     .where('creator_id = ? OR id IN (?)', id, projects_shared_with.ids)
+  # end
 
   def project_share_id(project)
     project_shares.find_by(project_id: project.id).id
+  end
+
+  # Projects still shared with + user has created
+  def my_projects
+    projects_shared_with.where(creator_id: id)
   end
 end

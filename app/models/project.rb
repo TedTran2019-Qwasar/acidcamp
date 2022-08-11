@@ -33,20 +33,20 @@ class Project < ApplicationRecord
   has_many :tasks,
            dependent: :destroy
 
-  def all_members
-    members + creator_sql
-  end
+  # def all_members
+  #   members + creator_sql
+  # end
 
-  def creator_sql
-    User
-      .where(id: creator_id)
-  end
+  # def creator_sql
+  #   User
+  #     .where(id: creator_id)
+  # end
 
-  def all_members_sql
-    User
-      .joins('LEFT JOIN project_shares ON users.id = project_shares.user_id')
-      .where('users.id = ? OR project_shares.project_id = ?', creator_id, id)
-  end
+  # def all_members_sql
+  #   User
+  #     .joins('LEFT JOIN project_shares ON users.id = project_shares.user_id')
+  #     .where('users.id = ? OR project_shares.project_id = ?', creator_id, id)
+  # end
 
   def shared_with?(user_id)
     !!members.find_by(id: user_id)

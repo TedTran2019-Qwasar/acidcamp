@@ -1,5 +1,5 @@
 <h2 class="text-xl">Members</h2>
-<% project.all_members.each do |member| %>
+<% project.members.each do |member| %>
   <div class="mx-auto flex-col">
     <%= render 'member', member: member, project: project %>
   </div>

@@ -6,11 +6,11 @@ class ProjectsController < ApplicationController
   def index
     @projects = case params[:filter]
                 when 'owned'
-                  current_user.projects
+                  current_user.my_projects
                 when 'shared'
                   current_user.projects_shared_with
                 else
-                  current_user.all_projects_sql
+                  current_user.projects_shared_with
                 end
     @projects = @projects.page(params[:page])
   end
@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        ProjectShare.create!(project_id: @project.id, user_id: current_user.id)
         current_user.add_role(:admin, @project)
         format.html { redirect_to project_url(@project), notice: 'Project was successfully created.' }
       else
@@ -94,7 +95,7 @@ class ProjectsController < ApplicationController
     @project = if current_user.has_role? :super_admin
                  Project.find(params[:id])
                else
-                 current_user.all_projects_sql.find(params[:id])
+                 current_user.projects_shared_with.find(params[:id])
                end
   end
 

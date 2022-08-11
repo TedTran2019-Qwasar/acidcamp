@@ -53,7 +53,7 @@ class DiscussionsController < ApplicationController
     @project = if current_user.has_role? :super_admin
                  Project.find(params[:project_id])
                else
-                 current_user.all_projects_sql.find(params[:project_id])
+                 current_user.projects_shared_with.find(params[:project_id])
                end
   end
 
